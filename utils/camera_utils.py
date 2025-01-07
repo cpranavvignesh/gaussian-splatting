@@ -56,11 +56,13 @@ def cameraList_from_camInfos(cam_infos, resolution_scale, args, skips = 1):
 
     i = 0
 
-    for id, c in enumerate(cam_infos):
-        if i % skips == 0 :
+    for id, c in enumerate(cam_infos) : 
+        if skips == 1 :
             camera_list.append(loadCam(args, id, c, resolution_scale))
-        i += 1
-
+        else :
+            if i % skips != 0 :
+                camera_list.append(loadCam(args, id, c, resolution_scale))
+            i += 1
     return camera_list
 
 def camera_to_JSON(id, camera : Camera):
